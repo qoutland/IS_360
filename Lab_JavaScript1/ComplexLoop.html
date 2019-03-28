@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Loops</title>
+    <script>
+        function btnCalculate_Click() {
+            var savingsAmmountWidget;
+            var savingsAmmountNumber;
+            var interestRateWidget;
+            var interestRateNumber;
+            var resultWidget;
+            var resultNumber;
+            var errorFlag = false;
+            var totalValue = 0;
+            var yearCount;
+
+            savingsAmmountWidget = document.getElementById("txtSavingsAmmount");
+            interestRateWidget = document.getElementById("txtInterestRate");
+            resultWidget = document.getElementById("txtResult");
+
+            savingsAmmountNumber = parseFloat(savingsAmmountWidget.value);
+            interestRateNumber = parseFloat(interestRateWidget.value);
+            if (isNaN(savingsAmmountNumber) || isNaN(interestRateNumber)){
+                errorFlag = true;
+            }
+            if (errorFlag){
+                resultWidget.value = "Cannot calculate. Input not numeric.";
+            }
+            else {
+                interestRateNumber = interestRateNumber / 100;
+                for (yearCount=1; yearCount <= 30; yearCount++){
+                    resultWidget.value += yearCount.toString() + "\t";
+                    resultWidget.value += totalValue.toFixed(2).toString() + "\t";
+                    totalValue = (totalValue + savingsAmmountNumber) * (1 + interestRateNumber);
+                    resultWidget.value += totalValue.toFixed(2).toString();
+                    resultWidget.value += "\n";
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <form id="savingsForm">
+        <fieldset form="savingsForm">
+            <legend>Enter Input: </legend>
+            <label for="txtSavingsAmmount">Ammount to save per period</label>
+            <input type="text" id="txtSavingsAmmount" />
+            <br />
+            <label for="txtInterestRate">Interest Rate (Enter 5% as 5 not 0.05)</label>
+            <input type="text" id="txtInterestRate" />
+            <br />
+            <label for="txtResult">Result</label>
+            <br />
+            <textarea id="txtResult" style="width: 200px;"></textarea>     
+            <br />
+            <button id="btnCalculate" type="button" onclick="btnCalculate_Click()">Calculate</button>
+        </fieldset>
+</body>
+
+</html>

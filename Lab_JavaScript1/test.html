@@ -1,0 +1,46 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Numeric Input</title>
+    <script>
+        function btnCalculate_Click() {
+            var hourlyWageWidget;            
+            var hourlyWageNumber;            
+            var hoursWorkedWidget;
+            var hoursWorkedNumber;
+            var resultWidget;
+            var resultNumber;            
+            var errorFlag = false;            
+            hourlyWageWidget = document.getElementById("txtHourlyWage");            
+            hoursWorkedWidget = document.getElementById("txtHoursWorked");            
+            resultWidget = document.getElementById("txtResult");
+            hourlyWageNumber = parseFloat(hourlyWageWidget.value);
+            hoursWorkedNumber = parseInt(hoursWorkedWidget.value);
+            if (isNaN(hourlyWageNumber) || isNaN(hoursWorkedNumber)){
+                errorFlag = true;            
+            }
+            if (errorFlag){
+                resultWidget.value = "Cannot calculate. Input not numeric."
+            }
+            else {
+                resultNumber = hourlyWageNumber * hoursWorkedNumber;
+                resultWidget.value = resultNumber.toString();
+            }        
+        }    
+    </script>
+</head>
+
+<body>
+    <form id="numericForm">
+        <fieldset form="numericForm">
+            <legend>Enter Input:</legend>
+            <label for="txtHourlyWage">Hourly Wage:</label> <input type="text" id="txtHourlyWage" /> <br /> <label
+                for="txtHoursWorked">Hours Worked</label> <input type="text" id="txtHoursWorked" /> <br /> <label for="txtResult">Result</label>
+            <input type="text" id="txtResult" /> <br /> <button id="btnCalculate" type="button" onclick="btnCalculate_Click()">
+                Validate </button>
+        </fieldset>
+    </form>
+</body>
+
+</html>

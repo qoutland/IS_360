@@ -1,0 +1,104 @@
+.gutter-colored {
+    background-color: aqua;
+    font-family: Tahoma;
+}
+
+body {
+    width: 1024px;
+    margin: auto;
+}
+
+.body-colored {
+    background-color: lightgrey;
+    border-right: 5px solid orange;
+    border-left: 5px solid orange;
+}
+
+
+.nav {
+    background-image: radial-gradient(circle, #004d33 5%, #006644 15%, aquamarine 60%);
+    width: 100%;
+    border: solid;
+    border-radius: 15px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.nav li {
+    padding: 2px 2px 8px 8px;
+    display: inline;
+}
+
+.nav li a {
+    color: orange;
+    text-decoration: none;
+}
+
+.nav li a:hover {
+    color: white;
+}
+
+
+.active {
+    color: white;
+}
+
+.nav-head :hover {
+    color: white;
+}
+
+.body-colored h1 {
+    font-size: 150%;
+}
+
+.body-colored h1::first-letter {
+    font-size: 150%;
+}
+
+.body-colored h2 {
+    font-size: 130%;
+}
+
+.body-colored h2::first-letter {
+    font-size: 130%;
+}
+
+.body-colored footer {
+    font-size: 75%;
+    border-radius: 25px;
+    border: 5px;
+    background-color: green;
+    height: 150px;
+}
+
+.body-colored footer img {
+    width: 100px;
+    height: 100px;
+    float: left;
+}
+
+.section-table {
+    width: 80%;
+    margin: auto;
+}
+
+.section-table thead,
+.section-table tfoot {
+    font-style: italic;
+}
+
+.section-table tbody tr:nth-child(odd) {
+    background-color: orange;
+}
+
+.section-table tbody tr:nth-child(even) {
+    background-color: green;
+}
+
+.body-colored strong,
+.body-colored em {
+    color: aquamarine;
+}

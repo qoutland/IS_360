@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Loops</title>
+    <script>
+        function btnWhileLoop_Click() {
+            var counter = 1;
+            ph = document.getElementById("divPlaceHolder");
+            ph.innerHTML = "Pretest loop: ";
+
+            while (counter <= 10){
+                ph.innerHTML += counter.toString()+"";
+                counter++;
+            } 
+        }
+        function btnDoWhileLoop_Click(){
+            var counter = 1;
+            ph = document.getElementById("divPlaceHolder");
+            ph.innerHTML = "Posttest loop: ";
+            do {
+                ph.innerHTML += counter.toString()+"";
+                counter++;
+            }
+            while (counter <= 10)
+        }
+        function btnForLoop_Click(){
+            var counter = 1;
+            ph = document.getElementById("divPlaceHolder");
+            ph.innerHTML = "For Loop: ";
+
+            for(counter=1; counter <= 10; counter++){
+                ph.innerHTML += counter.toString()+"";
+            }  
+        }
+        function btnRevWhileLoop_Click() {
+            var counter = 10;
+            ph = document.getElementById("divPlaceHolder");
+            ph.innerHTML = "Pretest Reverse loop: ";
+
+            while (counter >= 1){
+                ph.innerHTML += counter.toString()+"";
+                counter--;
+            } 
+        }
+        function btnRevDoWhileLoop_Click(){
+            var counter = 10;
+            ph = document.getElementById("divPlaceHolder");
+            ph.innerHTML = "PosttestReverse loop: ";
+            do {
+                ph.innerHTML += counter.toString()+"";
+                counter--;
+            }
+            while (counter >= 1)
+        }
+        function btnRevForLoop_Click(){
+            var counter = 1;
+            ph = document.getElementById("divPlaceHolder");
+            ph.innerHTML = "Reverse For Loop: ";
+
+            for(counter=10; counter >= 1; counter--){
+                ph.innerHTML += counter.toString()+"";
+            }  
+        }
+    </script>
+</head>
+
+<body>
+    <button type="button" id="btnWhileLoop" onclick="btnWhileLoop_Click()">WhileLoop</button>
+    <button type="button" id="btnDoWhileLoop" onclick="btnDoWhileLoop_Click()">DoWhileLoop</button>
+    <button type="button" id="btnForLoop" onclick="btnForLoop_Click()">ForLoop</button>
+
+    <button type="button" id="btnRevWhileLoop" onclick="btnRevWhileLoop_Click()">RevWhileLoop</button>
+    <button type="button" id="btnRevDoWhileLoop" onclick="btnRevDoWhileLoop_Click()">RevDoWhileLoop</button>
+    <button type="button" id="btnRevForLoop" onclick="btnRevForLoop_Click()">RevForLoop</button>
+    <div id="divPlaceHolder"></div>
+</body>
+
+</html>

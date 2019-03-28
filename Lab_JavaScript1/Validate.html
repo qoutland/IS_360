@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="utf-8">
+    <title>Validate</title>
+    <script>
+        function btnValidate_Click(){
+            var tFname;
+            var tLname;
+            var tErr;
+            tFName = document.getElementById("txtFirstName");
+            tLname = document.getElementById("txtLastName");
+            tErr = document.getElementById("spnMessages")
+            if (tFName.value == "" || tLname.value == ""){
+                tErr.innerHTML = "Both names must exist.";
+            }
+            else {
+                tErr.innerHTML= "Name valid";
+            }
+        };
+    </script>
+</head>
+
+<body>
+    <form id="firstForm">
+        <fieldset form="firstForm">
+            <legend>Validate Input</legend>
+            Enter Firstname: <input type="text" id="txtFirstName" />
+            <br />
+            Enter Lastname: <input type="text" id="txtLastName" />
+            <br />
+            <button id="btnValidate" type="button" onclick="btnValidate_Click()">Validate</button>
+            <br />
+            Messages: <span id="spnMessages"></span>
+        </fieldset>
+    </form>
+</body>
+
+</html>

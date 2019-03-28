@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>LabRelativeHeaders</title>
+        <style type="text/css">
+            .body{
+                width: 1024px;
+                margin: auto;
+                font-family: Verdana, sans-serif;
+            }
+            article {
+                position: relative;
+                margin: 25px 0px 25px 0px;
+                border: 1px solid darkgreen;
+                background-color: #ccffcc;
+                padding-bottom: 25px;
+            }
+            section {
+                position: relative;
+                margin: 0px 20px 25px 20px;
+                border: 1px solid darkgreen;
+                background-color: #ccff99;
+                padding-bottom: 25px;
+            }
+            .DivLevel3 {
+                position: relative;
+                margin: 0px 20px 25px 20px;
+                border: 1px solid darkgreen;
+                background-color: #ccff66;
+                padding-bottom: 25px; 
+            }
+            .Content {
+                margin: 0px 15px 25px 15px;
+            }
+            h1 {
+                margin-left: 20px;
+                text-shadow: 1px 1px green;
+            }
+            h2 {
+                margin-left: 20px;
+            }
+            h3 {
+                margin-left: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <article>
+            <h1>Heading 1</h1>
+            <p class="Content">Content</p>
+            <section>
+                <h2>Heading 2 (section1)</h2>
+                <div class="DivLevel3">
+                    <h2>Heading 3 (section1 level3-1)</h2>
+                    <div class="Content">
+                        <p>Content</p>
+                    </div>
+                </div>
+                <div class="DivLevel3">
+                        <h2>Heading 3 (section1 level3-2)</h2>
+                        <div class="Content">
+                            <p>Content</p>
+                        </div>
+                    </div>
+            </section>
+            <section>
+                <h2>Heading 2 (section2)</h2>
+                <div class="Content">
+                    <p>Content</p>
+                </div>
+            </section>
+        </article>
+    </body>
+</html>

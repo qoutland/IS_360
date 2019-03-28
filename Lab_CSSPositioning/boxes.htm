@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>boxes</title>
+    <style type="text/css">
+        .PageWrapper {
+            width: 800px;
+            position: relative;
+            font-family: Arial;
+        }
+
+        .ColumnContainer {
+            width: 800px;
+            position: relative;
+            height: auto;
+        }
+
+        .side-a {
+            float: left;
+            width: 100px;
+            background-color: aliceblue;
+            padding-left: 10px;
+            height: auto;
+        }
+
+        .side-fill {
+            float: left;
+            width: 30px;
+            height: auto;
+        }
+
+        .side-b {
+            float: left;
+            width: 624px;
+            background-color: ghostwhite;
+            padding-left: 10px;
+            height: auto;
+        }
+
+        .header {
+            background-color: antiquewhite;
+        }
+
+        .footer {
+            background-color: antiquewhite;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="PageWrapper">
+        <div class="header">
+            <h1>This is a header</h1>
+        </div>
+        <div class="ColumnContainer">
+            <div class="side-a">
+                <p>MENU</p>
+                <p>Item 1</p>
+                <p>Item 2</p>
+            </div>
+            <div class="side-fill">
+                <p></p>
+            </div>
+            <div class="side-b">
+                <p>Here we have the content area.</p>
+                <br />
+                <br />
+                <br />
+            </div>
+        </div>
+        <div style="clear: both;"></div>
+        <div class="footer">
+            <h2>This is the footer text</h2>
+        </div>
+    </div>
+
+    <div class="PageWrapper">
+        <div class="header">
+            <h1>This is a header</h1>
+        </div>
+        <div class="ColumnContainer">
+            <div class="side-b">
+                <p>Here we have the content area.</p>
+                <br />
+                <br />
+                <br />
+            </div>
+            <div class="side-fill">
+                <p></p>
+            </div>
+            <div class="side-a">
+                <p>MENU</p>
+                <p>Item 1</p>
+                <p>Item 2</p>
+            </div>
+        </div>
+        <div style="clear: both;"></div>
+        <div class="footer">
+            <h2>This is the footer text</h2>
+        </div>
+    </div>
+</body>
+
+</html>

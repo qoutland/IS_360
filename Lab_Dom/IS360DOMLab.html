@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>DomLab</title>
+    <script>
+        function btnGetParagraphCount_Click(){
+                var v;
+                v = document.getElementsByTagName("p");
+                alert("There are "+ v.length + " paragraph elements in the document.");
+        };
+        function btnGeth1Count_Click(){
+            var v;
+            v = document.getElementsByTagName("h1");
+            alert("There are "+ v.length + " h1 elements in the document.");
+        };
+        function btnGetArticlebyIdArticle1_Click(){
+            var v;
+            var h1;
+            v = document.getElementById("Article1");
+            h1 = v.getElementsByTagName("h1");
+            alert("The first article tag has an h1 tag. It's content is: " + h1[0].innerHTML);
+        };
+        function btnGetArticlebyIdArticle2_Click(){
+            var v;
+            var h1;
+            v = document.getElementById("Article2");
+            h1 = v.getElementsByTagName("h1");
+            alert("The second article tag has an h1 tag. It's content is: " + h1[0].innerHTML);
+        };
+        function btnGetInfo_Click(){
+            var v;
+            var div="";
+            v = document.getElementById("Article1");
+            div = document.getElementById("divInfo");
+            div.innerHTML = "hasAttributes(): " + v.hasAttributes() + "<br />";
+            div.innerHTML += "hasChildNodes(): " + v.hasChildNodes() + "<br />";
+            div.innerHTML += "nodeType: " + v.nodeType + "<br />";
+        }
+        </script>
+</head>
+
+<body>
+    <form>
+        <button id="btnGetParagraphCount" type="button" onclick="btnGetParagraphCount_Click()">Get Paragraph Elements</button>
+        <button id="btnGeth1Count" type="button" onclick="btnGeth1Count_Click()">Get h1 Elements</button>
+        <button id="btnGetArticlebyIdArticle1" type="button" onclick="btnGetArticlebyIdArticle1_Click()">Get Article 1 by
+            ID</button>
+        <button id="btnGetArticlebyIdArticle2" type="button" onclick="btnGetArticlebyIdArticle2_Click()">Get Article 2 by
+                ID</button>
+        <button id="btnGetInfo" type="button" onclick="btnGetInfo_Click()">Get Info</button>
+    </form>
+    <article id="Article1">
+        <h1>L1 Heading for Article 1</h1>
+        <p>Paragraph</p>
+        <div id="divInfo">
+
+        </div>
+    </article>
+
+    <article id="Article2">
+            <h1>L1 Heading for Article 2</h1>
+            <p>Paragraph</p>
+        </article>
+</body>
+
+</html>

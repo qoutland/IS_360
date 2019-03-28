@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>AJAX</title>
+        <script>
+            var req = XMLHttpRequest;
+            function GetWeatherRawAjaxSync(){
+                var base_uri = "https://www.ncdc.noaa.gov/cdo-web/api/v2/datasets";
+                req = new XMLHttpRequest();
+
+                req.open("GET",base_uri,false);
+                req.setRequestHeader("token", "vczOaCmkCxBVQHkKGXeVcGoNcrzjdBab");
+                req.send();
+
+                var txtOutput;
+                var myText = req.responseText;
+                txtOutput = document.getElementById("txtXMLAsText");
+                txtOutput.innerHTML = myText;
+            };
+            function GetWeatherRawAjaxASync(){
+                var base_uri = "https://www.ncdc.noaa.gov/cdo-web/api/v2/datasets";
+                req = new XMLHttpRequest();
+
+                req.onreadystatechange = function (){
+                    if (this.readyState == 4 && this.status == 200){
+                        var myText = req.responseText;
+                        var txtOutput = document.getElementById("txtXMLAsText");
+                        txtOutput.innerHTML = myText;
+                    }
+                };
+                req.open("GET",base_uri,true);
+                req.setRequestHeader("token", "vczOaCmkCxBVQHkKGXeVcGoNcrzjdBab");
+                req.send();
+            };
+            function GetYQLTablesRawSync(){
+                var base_uri = "https://query.yahooapis.com/v1/public/yql?q=";
+                var yql_query = "show tables";
+                var yql_format = "&format=xml";
+                var full_query = base_uri + yql_query + yql_format;
+                
+                req = new XMLHttpRequest();
+                req.open("GET", full_query, false);
+                req.send();
+                var txtOutput;
+                var MyText = req.responseText;
+                txtOutput = document.getElementById("txtXMLAsText");
+                txtOutput.innerHTML = MyText;
+            };
+        </script>
+    </head>
+    <body>
+        <button id="btnGetWeatherRawAjaxSync" type="button" value="Get Weather (Sync)" onclick="GetWeatherRawAjaxSync()">
+        Get Weather (Sync) (Raw)</button>
+        <button id="btnGetWeatherRawAjaxASync" type="button" value="Get Weather (Sync)" onclick="GetWeatherRawAjaxASync()">
+                Get Weather (ASync) (Raw)</button>
+        <button id="btnGetYQLTablesRawSync" type="button" value="Get Weather (Sync)" onclick="GetYQLTablesRawSync()">
+                Get Tables (Sync) (Raw)</button>
+    <br />
+    <textarea style="width: 600px;" id="txtXMLAsText" rows="50" cols="200"></textarea>
+</body>
+
+</html>

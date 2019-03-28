@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>AJAX_P2</title>
+    <script>
+        function RunQuery(){
+            var radXMLOne = document.getElementById("YQLSelectGeoPlacesXmlOne");
+            var radXMLMany = document.getElementById("YQLSelectGeoPlacesXmlMany");
+            var radJsonOne = document.getElementById("YQLSelectGeoPlacesJsonOne");
+            var radJsonMany = document.getElementById("YQLSelectGeoPlacesJsonMany");
+
+
+        }
+    </script>
+</head>
+
+<body>
+    <p>SELECT * from geo.places (XML) 1 Record
+        <input type="radio" name="whichQuery" id="YQLSelectGeoPlacesXmlOne" />
+    </p>
+    <p>SELECT * from geo.places (XML) Many Records
+        <input type="radio" name="whichQuery" id="YQLSelectGeoPlacesXmlMany" />
+    </p>
+    <p>SELECT * from geo.places (JSON) 1 Record
+        <input type="radio" name="whichQuery" id="YQLSelectGeoPlacesJsonOne" />
+    </p>
+    <p>SELECT * from geo.places (JSON) Many Records
+        <input type="radio" name="whichQuery" id="YQLSelectGeoPlacesJsonMany" />
+    </p>
+    <button id="btnRunQuery" type="button" value="RunQuery()" onclick="runQuery()">RunQuery</button>
+    <br />
+    <textarea id="txtXMLAsText" cols="200" rows="50"></textarea>
+</body>
+
+</html>

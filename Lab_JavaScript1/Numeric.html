@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Numeric Input</title>
+    <script>
+        function btnCalculate_Click() {
+            var hourlyWageWidget;            
+            var hourlyWageNumber;            
+            var hoursWorkedWidget;
+            var hoursWorkedNumber;
+            var resultWidget;
+            var resultNumber;
+            var taxWidget;
+            var taxNumber;
+            var netWidget;
+            var netNumber;
+            var errorFlag = false;            
+            hourlyWageWidget = document.getElementById("txtHourlyWage");            
+            hoursWorkedWidget = document.getElementById("txtHoursWorked");            
+            resultWidget = document.getElementById("txtResult");
+            taxWidget = document.getElementById("txtTax");
+            netWidget = document.getElementById("txtNet")
+            hourlyWageNumber = parseFloat(hourlyWageWidget.value);
+            hoursWorkedNumber = parseInt(hoursWorkedWidget.value);
+            if (isNaN(hourlyWageNumber) || isNaN(hoursWorkedNumber)){
+                errorFlag = true;            
+            }
+            if (errorFlag){
+                resultWidget.value = "Cannot calculate. Input not numeric."
+            }
+            else {
+                resultNumber = hourlyWageNumber * hoursWorkedNumber;
+                taxNumber = resultNumber * .28;
+                netNumber = resultNumber - taxNumber;
+                resultWidget.value = resultNumber.toString();
+                taxWidget.value = taxNumber.toString();
+                netWidget.value = netNumber.toString();
+            }        
+        }   
+    </script>
+</head>
+
+<body>
+    <form id="numericForm">
+        <fieldset form="numericForm">
+            <legend>Enter Input:</legend>
+            <label for="txtHourlyWage">Hourly Wage:</label>
+            <input type="text" id="txtHourlyWage"/>
+            <br />
+            <label for="txtHoursWorked">Hours Worked:</label>
+            <input type="text" id="txtHoursWorked"/>
+            <br />
+            <label for="txtResult">Gross Pay</label>
+            <input type="text" id="txtResult"/>
+            <br />
+            <label for="txtTax">Tax Deduction</label>
+            <input type="text" id="txtTax"/>
+            <br />
+            <label for="txtNet">Net Pay</label>
+            <input type="text" id="txtNet"/>
+            <br />
+            <button id="btnCalculate" type="button" onclick="btnCalculate_Click()">Calculate</button>
+        </fieldset>
+    </form>
+</body>
+
+</html>
