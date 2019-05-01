@@ -11,26 +11,26 @@
         var abreviations = [ 'Proof of Concept','AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY' ];
         
         function load() {
-            var sel = document.getElementById('states');
-            for (i=0;i<abreviations.length;i++){
-                var opt = document.createElement('option');
-                opt.appendChild(document.createTextNode(abreviations[i]));
-                opt.value = abreviations[i];
-                sel.add(opt);
-            }
+
         };
 
-        function AsyncStationRequest() {
+        function AsyncWeatherRequest() {
             RemoveAllChildren(document.getElementById('table-holder'))
-            var base_uri = "https://w1.weather.gov/xml/current_obs/index.xml";
+            var txtLat = document.getElementById("txtLat");
+            var txtLon = document.getElementById("txtLon");
+            var base_uri =
+                "https://forecast.weather.gov/MapClick.php"
+            base_uri += "?lat=" + txtLat.value;
+            base_uri += "&lon=" + txtLon.value;
+            base_uri += "&unit=0&lg=english&FcstType=dwml";
             req = new XMLHttpRequest();
             req.open("GET", base_uri, true);
             req.setRequestHeader("Accept", "text / html, application / xhtml + xml, application / xml; q = 0.9,*/*;q=0.8");
-            req.onreadystatechange = showStationData;
+            req.onreadystatechange = showWeatherData;
             req.send();
         };
 
-        function showStationData() {
+        function showWeatherData() {
             if (this.readyState == 4 && this.status == 200) {
                 data = this.responseXML;
                 var sel = document.getElementById('states');
@@ -51,13 +51,11 @@
                 thd.appendChild(tr)
                 var tbd = document.createElement('tbody');
                  for (x = 0; x < stations.length; x++) {
-                    if (stations[x].getElementsByTagName('state')[0].innerHTML == sel.value) {
                         var tr = document.createElement('tr')
                         for (y = 0; y<names.length; y++){
                             var td = document.createElement('td');
                             td.appendChild(document.createTextNode(stations[x].getElementsByTagName(names[y])[0].innerHTML));
                             tr.append(td);
-                        }
                         tbd.appendChild(tr);
                     }
                 }
@@ -96,9 +94,11 @@
         </div>
     </nav>
     <div class="container">
-        <select id="states" name="states" onchange="AsyncStationRequest()">
-        <option disabled selected>Select a state</option>
-        </select>
+            <label for="txtLat">Latitude</label>
+            <input type="text" name="txtLat" id="txtLat" value="39.3168" required>
+            <label for="txtLon">Longitude</label>
+            <input type="text" name="txtLon" id="txtLon" value="-120.3499"required>
+            <button class="btn btn-primary" onclick="AsyncWeatherRequest()">Get Weather</button>
         <br /><br />
         <div id="table-holder"></div>
     </div>
