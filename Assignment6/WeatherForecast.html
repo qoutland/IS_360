@@ -33,7 +33,14 @@
         function showWeatherData() {
             if (this.readyState == 4 && this.status == 200) {
                 data = this.responseXML;
-                var sel = document.getElementById('states');
+                console.log(data)
+                var dat = data.getElementsByTagName('data');
+                var layouts = data.getElementsByTagName("time-layout");
+                console.log(layouts)
+                createFilter(layouts)
+
+
+                /*var sel = document.getElementById('states');
                 var stations = data.getElementsByTagName("station");
                 var headers = ['Station ID', 'State', 'Latitude', 'Longitude'];
                 var names = ['station_id','state','latitude','longitude'];
@@ -65,13 +72,40 @@
                     tableDiv.appendChild(tbl);
                 } else
                 tableDiv.appendChild(document.createElement('h1').appendChild(document.createTextNode('No Stations found mathcing state: '+ sel.value)))
-           }
+           */}
         };
         
         function RemoveAllChildren(argNode) {
             while (argNode.firstChild) {
                 argNode.removeChild(argNode.firstChild);
             }
+        }
+        
+        function createFilter(data){
+            var filterDiv = document.getElementById('filter'); 
+            var sel = document.createElement('select')
+            sel.setAttribute('onchange','showTemps()')
+            var opt = document.createElement('option')
+            opt.appendChild(document.createTextNode('Choose a Time category'));
+            opt.setAttribute('selected','');
+            opt.setAttribute('disabled','');
+            sel.add(opt)
+            for (i=0;i<data.length;i++){
+                console.log(data[i].getElementsByTagName('layout-key')[0].innerHTML)
+                var opt = document.createElement('option');
+                opt.value = data[i].getElementsByTagName('layout-key')[0].innerHTML;
+                opt.appendChild(document.createTextNode(data[i].getElementsByTagName('layout-key')[0].innerHTML));
+                sel.add(opt)
+            }
+            filterDiv.appendChild(sel)
+        }
+        
+        function showTemps(){
+            var temps = data.getElementsByTagName('temperature');
+            for (i=0;i<temps.length;i++){
+                    console.log(temps.childNodes.value)
+            }
+            
         }
     </script>
 </head>
@@ -87,8 +121,8 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a class="nav-link" href="Index.html">Index</a></li>
-                <li class="nav-item"><a class="nav-link active" href="WeatherStations.html">WeatherStations</a></li>
-                <li class="nav-item"><a class="nav-link" href="WeatherForecast.html">WeatherForecast</a></li>
+                <li class="nav-item"><a class="nav-link" href="WeatherStations.html">WeatherStations</a></li>
+                <li class="nav-item"><a class="nav-link active" href="WeatherForecast.html">WeatherForecast</a></li>
                 <li class="nav-item"><a class="nav-link" href="NWSQuery1.html">NWSQuery1</a></li>
             </ul>
         </div>
@@ -99,6 +133,7 @@
             <label for="txtLon">Longitude</label>
             <input type="text" name="txtLon" id="txtLon" value="-120.3499"required>
             <button class="btn btn-primary" onclick="AsyncWeatherRequest()">Get Weather</button>
+            <div id="filter"></div>
         <br /><br />
         <div id="table-holder"></div>
     </div>
