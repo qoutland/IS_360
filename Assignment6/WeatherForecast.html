@@ -15,7 +15,7 @@
         };
 
         function AsyncWeatherRequest() {
-            RemoveAllChildren(document.getElementById('table-holder'))
+            RemoveAllChildren(document.getElementById('filter'))
             var txtLat = document.getElementById("txtLat");
             var txtLon = document.getElementById("txtLon");
             var base_uri =
@@ -34,45 +34,8 @@
             if (this.readyState == 4 && this.status == 200) {
                 data = this.responseXML;
                 console.log(data)
-                var dat = data.getElementsByTagName('data');
                 var layouts = data.getElementsByTagName("time-layout");
-                console.log(layouts)
-                createFilter(layouts)
-
-
-                /*var sel = document.getElementById('states');
-                var stations = data.getElementsByTagName("station");
-                var headers = ['Station ID', 'State', 'Latitude', 'Longitude'];
-                var names = ['station_id','state','latitude','longitude'];
-                var tableDiv = document.getElementById("table-holder");
-                var tbl = document.createElement('table');
-                tbl.id = 'tbl'
-                tbl.classList.add('table', 'table-striped', 'table-hover');
-                var thd = document.createElement('thead');
-                var tr = document.createElement('tr');
-                for (x = 0; x < headers.length; x++) {
-                    var th = document.createElement('th');
-                    th.appendChild(document.createTextNode(headers[x]));
-                    tr.appendChild(th);
-                }
-                thd.appendChild(tr)
-                var tbd = document.createElement('tbody');
-                 for (x = 0; x < stations.length; x++) {
-                        var tr = document.createElement('tr')
-                        for (y = 0; y<names.length; y++){
-                            var td = document.createElement('td');
-                            td.appendChild(document.createTextNode(stations[x].getElementsByTagName(names[y])[0].innerHTML));
-                            tr.append(td);
-                        tbd.appendChild(tr);
-                    }
-                }
-                if (tbd.childNodes.length){
-                    tbl.appendChild(thd);
-                    tbl.appendChild(tbd);
-                    tableDiv.appendChild(tbl);
-                } else
-                tableDiv.appendChild(document.createElement('h1').appendChild(document.createTextNode('No Stations found mathcing state: '+ sel.value)))
-           */}
+                createFilter(layouts)}
         };
         
         function RemoveAllChildren(argNode) {
@@ -84,6 +47,7 @@
         function createFilter(data){
             var filterDiv = document.getElementById('filter'); 
             var sel = document.createElement('select')
+            sel.id = 'time-format'
             sel.setAttribute('onchange','showTemps()')
             var opt = document.createElement('option')
             opt.appendChild(document.createTextNode('Choose a Time category'));
@@ -101,11 +65,54 @@
         }
         
         function showTemps(){
-            var temps = data.getElementsByTagName('temperature');
-            for (i=0;i<temps.length;i++){
-                    console.log(temps.childNodes.value)
+            var frmt = document.getElementById('time-format');
+            var layouts = data.getElementsByTagName("time-layout");
+            var tblDiv = document.getElementById('table-holder');
+            var tbl = document.createElement('table');
+            tbl.classList.add('table', 'table-striped', 'table-hover');
+            var thd = document.createElement('thead');
+            var tr = document.createElement('tr');
+            RemoveAllChildren(document.getElementById('table-holder'))
+            tr.append(document.createElement('th').appendChild(document.createTextNode('Type')))
+            for (i=0;i<layouts.length;i++){
+                if (layouts[i].getElementsByTagName('layout-key')[0].innerHTML == frmt.value){
+                    for (j=0;j<layouts[i].getElementsByTagName('start-valid-time').length;j++){
+                        var th = document.createElement('th');
+                        th.appendChild(document.createTextNode(layouts[i].getElementsByTagName('start-valid-time')[j].innerHTML));
+                        tr.append(th);
+                    }
+                }
             }
-            
+            thd.appendChild(tr);
+
+            var params = data.getElementsByTagName('parameters');
+            var tbd = document.createElement('tbody');
+            for (i=0;i<params.length;i++){
+                for (j=0;j<params[i].childNodes.length;j++){
+                    try{
+                        if (params[i].childNodes[j].getAttribute('time-layout') == frmt.value){
+                            console.log(params[i].childNodes[j].childNodes[1].innerHTML);
+                            var tr = document.createElement('tr');
+                            for (k=0;k<params[i].childNodes[j].childNodes.length; k++) {
+                                if (params[i].childNodes[j].childNodes[k].innerHTML != undefined) {
+                                    var td = document.createElement('td');
+                                    td.appendChild(document.createTextNode(params[i].childNodes[j].childNodes[k].innerHTML))
+                                    tr.appendChild(td);
+                                }
+                            }
+                        }
+                        tbd.appendChild(tr)
+                    }
+                    catch(error){}
+                }
+            }
+            tbl.appendChild(thd);  
+            tbl.appendChild(tbd); 
+            tblDiv.appendChild(tbl);
+        }
+
+        function creatHeaders() {
+
         }
     </script>
 </head>
